@@ -1,9 +1,15 @@
 package br.com.igrejadapaz.fortaleza.mapasdascelulas.Dao;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+
+import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 
 /**
  * Created by Samuel Santiago on 20/11/2015.
@@ -99,7 +105,71 @@ public class CelulaDao extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sql = "DROP TABLE IF EXISTS " + TABELA;
+        db.execSQL(sql);
+        onCreate(db);
     }
+
+    public void inserirRegistro(CelulaBean celula) {
+        ContentValues valores = new ContentValues();
+
+        valores.put("nome", celula.getNome());
+        valores.put("endereco", celula.getEndereco());
+        valores.put("liderNome", celula.getLiderNome());
+        valores.put("telefoneInformacao", celula.getTelefoneInformacao());
+        valores.put("diaHora", celula.getDiaHora());
+        valores.put("latitude", celula.getLatitude());
+        valores.put("longitude", celula.getLongitude());
+
+        getWritableDatabase().insert(TABELA, null, valores);
+    }
+
+    public void removerRegistro(CelulaBean celula) {
+        String[] args = {Integer.toString(celula.getId())};
+        getWritableDatabase().delete(TABELA, "id=?", args);
+    }
+
+    public void editarRegistro(CelulaBean celula) {
+        ContentValues valores = new ContentValues();
+
+        valores.put("nome", celula.getNome());
+        valores.put("endereco", celula.getEndereco());
+        valores.put("liderNome", celula.getLiderNome());
+        valores.put("telefoneInformacao", celula.getTelefoneInformacao());
+        valores.put("diaHora", celula.getDiaHora());
+        valores.put("latitude", celula.getLatitude());
+        valores.put("longitude", celula.getLongitude());
+
+        String[] args = new String[]{Integer.toString(celula.getId())};
+
+        getWritableDatabase().update(TABELA, valores, "id=?", args);
+    }
+
+    public ArrayList<CelulaBean> consultarRegistros() {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
 
 }

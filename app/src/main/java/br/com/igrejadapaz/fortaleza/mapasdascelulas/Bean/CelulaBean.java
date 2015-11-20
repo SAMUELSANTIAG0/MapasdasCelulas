@@ -21,6 +21,11 @@ public class CelulaBean implements Parcelable {
         readFromParcelable(in);
     }
 
+    public CelulaBean() {
+        // TODO
+    }
+
+
 
 //    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
 //        @Override
