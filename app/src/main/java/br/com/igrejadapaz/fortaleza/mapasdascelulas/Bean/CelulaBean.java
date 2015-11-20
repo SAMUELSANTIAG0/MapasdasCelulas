@@ -3,6 +3,12 @@ package br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import br.com.igrejadapaz.fortaleza.mapasdascelulas.R;
+
 /**
  * Created by Samuel Santiago on 20/11/2015.
  */
@@ -16,6 +22,8 @@ public class CelulaBean implements Parcelable {
     private String diaHora;
     private Double latitude;
     private Double longitude;
+    private LatLng posicao;
+    private MarkerOptions markerOptions;
 
     public CelulaBean(Parcel in) {
         readFromParcelable(in);
@@ -25,9 +33,18 @@ public class CelulaBean implements Parcelable {
         // TODO
     }
 
+    public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.liderNome = liderNome;
+        this.telefoneInformacao = telefoneInformacao;
+        this.diaHora = diaHora;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        setPosicao();
+    }
 
-
-//    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
+    //    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
 //        @Override
 //        public CelulaBean createFromParcel(Parcel in) {
 //            return new CelulaBean(in);
@@ -101,6 +118,25 @@ public class CelulaBean implements Parcelable {
         return CREATOR;
     }
 
+    public LatLng getPosicao() {
+        setPosicao();
+        return posicao;
+    }
+
+    public void setPosicao() {
+        LatLng posicao = new LatLng(this.latitude, this.longitude);
+        this.posicao = posicao;
+    }
+
+    public MarkerOptions getMarkerOptions() {
+        setMarkerOptions();
+        return markerOptions;
+    }
+
+    public void setMarkerOptions() {
+        MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(getPosicao()).title(getNome()).snippet(getDiaHora() + " Contato: " + getTelefoneInformacao() + " -" + getLiderNome());
+        this.markerOptions = markerOptions;
+    }
 
     public int getId() {
         return id;

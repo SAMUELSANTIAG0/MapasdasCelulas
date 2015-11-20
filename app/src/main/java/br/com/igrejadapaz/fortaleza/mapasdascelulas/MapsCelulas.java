@@ -9,9 +9,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 
 public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback {
 
@@ -21,6 +23,7 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private CelulaBean celulaTeste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,14 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        popularCelulaTeste();
     }
 
+
+    private void popularCelulaTeste() {
+        celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218);
+    }
 
     /**
      * Manipulates the map once available.
@@ -54,20 +63,29 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         mMap.setContentDescription("Celulas em Fortaleza");
 
         LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
-        mMap.addMarker(new MarkerOptions().position(fortaleza).title("Fortaleza"));
+//        mMap.addMarker(new MarkerOptions().position(fortaleza).title("Fortaleza"));
 
         LatLng unifor = new LatLng(-3.76908106, -38.48176003);
         mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
 
-        LatLng celula = new LatLng(-3.82568256, -38.55116218);
-        mMap.addMarker(new MarkerOptions().position(celula).title("Celula MDA").snippet("Lider: Samuel, Sabado as 16h").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).anchor(0.0f, 0.0f));
+        mMap.addMarker(celulaTeste.getMarkerOptions());
+
+//        LatLng celula = new LatLng(celulaTeste.getLatitude(),celulaTeste.getLongitude());
+//        mMap.addMarker(new MarkerOptions().position(celula).title(celulaTeste.getNome()).snippet(celulaTeste.getDiaHora()+" Líder "+celulaTeste.getLiderNome()+" contato: "+celulaTeste.getTelefoneInformacao()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).anchor(0.0f, 0.0f));
 
 //        mMap.addPolyline(new PolylineOptions().add(unifor).add(celula).color(R.color.aqua).geodesic(true));
 
 //        Geocoder geocoder = new Geocoder(MapsCelulas.this, Locale.getDefault());
 //        Location loc;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(fortaleza, 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(fortaleza, 2));
+
+//        CameraPosition cp = CameraPosition.builder().target(fortaleza).zoom(2).bearing(90).build();
+//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp),2000,null);
+
+        CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(12).bearing(360).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+
     }
 
 }

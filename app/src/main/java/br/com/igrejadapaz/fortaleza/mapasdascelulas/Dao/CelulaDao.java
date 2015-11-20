@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 
+
 /**
  * Created by Samuel Santiago on 20/11/2015.
  */
