@@ -6,5 +6,17 @@
     {
         "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\mda_icon.png",
         "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\mda_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\ic_ig_paz.jpg",
+        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\ic_ig_paz.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\ic_ig_paz_55x55.png",
+        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\ic_ig_paz_55x55.png"
+    },
+    {
+        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\ic_ig_paz_44x44.png",
+        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\ic_ig_paz_44x44.png"
     }
 ]

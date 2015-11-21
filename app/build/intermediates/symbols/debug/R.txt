@@ -829,9 +829,12 @@ int layout select_dialog_item_material 0x7f040026
 int layout select_dialog_multichoice_material 0x7f040027
 int layout select_dialog_singlechoice_material 0x7f040028
 int layout support_simple_spinner_dropdown_item 0x7f040029
-int mipmap ic_launcher 0x7f030000
-int mipmap ig_paz_logo_nome 0x7f030001
-int mipmap mda_icon 0x7f030002
+int mipmap ic_ig_paz 0x7f030000
+int mipmap ic_ig_paz_44x44 0x7f030001
+int mipmap ic_ig_paz_55x55 0x7f030002
+int mipmap ic_launcher 0x7f030003
+int mipmap ig_paz_logo_nome 0x7f030004
+int mipmap mda_icon 0x7f030005
 int raw gtm_analytics 0x7f060000
 int string abc_action_bar_home_description 0x7f070000
 int string abc_action_bar_home_description_format 0x7f070001

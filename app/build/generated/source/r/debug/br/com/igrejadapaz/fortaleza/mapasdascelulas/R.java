@@ -2367,9 +2367,12 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f040029;
     }
     public static final class mipmap {
-        public static final int ic_launcher=0x7f030000;
-        public static final int ig_paz_logo_nome=0x7f030001;
-        public static final int mda_icon=0x7f030002;
+        public static final int ic_ig_paz=0x7f030000;
+        public static final int ic_ig_paz_44x44=0x7f030001;
+        public static final int ic_ig_paz_55x55=0x7f030002;
+        public static final int ic_launcher=0x7f030003;
+        public static final int ig_paz_logo_nome=0x7f030004;
+        public static final int mda_icon=0x7f030005;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f060000;

@@ -7,6 +7,8 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import java.util.ArrayList;
 
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
@@ -289,4 +291,113 @@ public class CelulaDao extends SQLiteOpenHelper {
         }
         return celulaList;
     }
+
+    public void getMarkers(GoogleMap mMap) {
+
+        String sql = "Select * from celula order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkers(GoogleMap mMap, int semanaID) {
+
+        String sql = "Select * from celula where semanaID =" + semanaID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkersSemana(GoogleMap mMap) {
+
+        String sql = "Select * from celula where semanaID !=7 order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkersSabado(GoogleMap mMap) {
+
+        String sql = "Select * from celula where semanaID =7 order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
 }

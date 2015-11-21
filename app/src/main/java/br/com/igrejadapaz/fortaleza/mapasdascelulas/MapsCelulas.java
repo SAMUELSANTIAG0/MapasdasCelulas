@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
+import br.com.igrejadapaz.fortaleza.mapasdascelulas.Dao.CelulaDao;
 
 public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback {
 
@@ -24,7 +25,6 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    private CelulaBean celulaTeste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,9 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
 
     private void popularCelulaTeste() {
-        celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7);
+        CelulaBean celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7);
+        CelulaDao dao = new CelulaDao(MapsCelulas.this);
+        dao.inserirRegistro(celulaTeste);
     }
 
     /**
@@ -70,10 +72,10 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
 
         LatLng igreja = new LatLng(-3.8129413, -38.449650);
-        mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz)));
+        mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz_55x55)));
 
-        mMap.addMarker(celulaTeste.getMarkerOptions());
-
+        CelulaDao celulaDao = new CelulaDao(MapsCelulas.this);
+        celulaDao.getMarkers(mMap);
 //        LatLng celula = new LatLng(celulaTeste.getLatitude(),celulaTeste.getLongitude());
 //        mMap.addMarker(new MarkerOptions().position(celula).title(celulaTeste.getNome()).snippet(celulaTeste.getDiaHora()+" Líder "+celulaTeste.getLiderNome()+" contato: "+celulaTeste.getTelefoneInformacao()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).anchor(0.0f, 0.0f));
 
