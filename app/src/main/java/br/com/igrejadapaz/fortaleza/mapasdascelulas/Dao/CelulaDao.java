@@ -82,7 +82,9 @@ public class CelulaDao extends SQLiteOpenHelper {
                 + "diaHora TEXT, "
                 + "latitude DOUBLE, "
                 + "longitude DOUBLE,"
-                + "semanaID INTEGER) ";
+                + "semanaID INTEGER, "
+                + "tipoID INTEGER, "
+                + "redeID INTEGER)";
         db.execSQL(sql);
 
     }
@@ -125,6 +127,8 @@ public class CelulaDao extends SQLiteOpenHelper {
         valores.put("latitude", celula.getLatitude());
         valores.put("longitude", celula.getLongitude());
         valores.put("semanaID", celula.getSemanaID());
+        valores.put("tipoID", celula.getTipoID());
+        valores.put("redeID", celula.getRedeID());
 
         getWritableDatabase().insert(TABELA, null, valores);
     }
@@ -145,10 +149,39 @@ public class CelulaDao extends SQLiteOpenHelper {
         valores.put("latitude", celula.getLatitude());
         valores.put("longitude", celula.getLongitude());
         valores.put("semanaID", celula.getSemanaID());
+        valores.put("tipoID", celula.getTipoID());
+        valores.put("redeID", celula.getRedeID());
 
         String[] args = new String[]{Integer.toString(celula.getId())};
 
         getWritableDatabase().update(TABELA, valores, "id=?", args);
+    }
+
+    public CelulaBean getCelula(int id) {
+        String sql = "Select * from celula where id =" + id;
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+        CelulaBean celula = new CelulaBean();
+
+        try {
+            while (cursor.moveToNext()) {
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+
+        return celula;
     }
 
     public ArrayList<CelulaBean> consultarCelulas() {
@@ -170,6 +203,8 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 celulaList.add(celula);
             }
@@ -180,35 +215,10 @@ public class CelulaDao extends SQLiteOpenHelper {
         return celulaList;
     }
 
-    public CelulaBean getCelula(int id) {
-        String sql = "Select * from celula where id =" + id;
-        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
-        CelulaBean celula = new CelulaBean();
-
-        try {
-            while (cursor.moveToNext()) {
-                celula.setId(cursor.getInt(0));
-                celula.setNome(cursor.getString(1));
-                celula.setEndereco(cursor.getString(2));
-                celula.setLiderNome(cursor.getString(3));
-                celula.setTelefoneInformacao(cursor.getString(4));
-                celula.setDiaHora(cursor.getString(5));
-                celula.setLatitude(cursor.getDouble(6));
-                celula.setLongitude(cursor.getDouble(7));
-                celula.setSemanaID(cursor.getInt(8));
-            }
-        } catch (android.database.SQLException sqle) {
-        } finally {
-            cursor.close();
-        }
-
-        return celula;
-    }
-
-    public ArrayList<CelulaBean> consultarCelulas(int semanaID) {
+    public ArrayList<CelulaBean> consultarCelulasTipoId(int tipoID) {
 
         ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
-        String sql = "Select * from celula where semanaID =" + semanaID + " order by nome";
+        String sql = "Select * from celula where tipoID =" + tipoID + " order by nome";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 
         try {
@@ -224,6 +234,39 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulasTipoIdSemanaId(int tipoID, int semanaID) {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID =" + semanaID + " and tipoID =" + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 celulaList.add(celula);
             }
@@ -253,6 +296,70 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulasSemanaTipoId(int tipoID) {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID <7" + " and tipoID =" + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulasSabadoTipoId(int tipoID) {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID =7" + " and tipoID =" + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 celulaList.add(celula);
             }
@@ -282,6 +389,8 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 celulaList.add(celula);
             }
@@ -310,6 +419,8 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 mMap.addMarker(celula.getMarkerOptions());
             }
@@ -319,9 +430,9 @@ public class CelulaDao extends SQLiteOpenHelper {
         }
     }
 
-    public void getMarkers(GoogleMap mMap, int semanaID) {
+    public void getMarkersID(GoogleMap mMap, int id) {
 
-        String sql = "Select * from celula where semanaID =" + semanaID + " order by nome";
+        String sql = "Select * from celula where id = " + id + " order by nome";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 
         try {
@@ -337,6 +448,37 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkersTipoId(GoogleMap mMap, int tipoID) {
+
+        String sql = "Select * from celula where tipoID =" + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 mMap.addMarker(celula.getMarkerOptions());
             }
@@ -364,6 +506,37 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkersSemanaTipoId(GoogleMap mMap, int tipoID) {
+
+        String sql = "Select * from celula where semanaID !=7 and tipoID = " + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 mMap.addMarker(celula.getMarkerOptions());
             }
@@ -391,6 +564,37 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
                 celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+
+                mMap.addMarker(celula.getMarkerOptions());
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void getMarkersSabadoTipoId(GoogleMap mMap, int tipoID) {
+
+        String sql = "Select * from celula where semanaID =7 and tipoID =" + tipoID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
 
                 mMap.addMarker(celula.getMarkerOptions());
             }

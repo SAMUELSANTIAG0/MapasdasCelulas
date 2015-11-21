@@ -22,9 +22,16 @@ public class CelulaBean implements Parcelable {
     private String diaHora;
     private Double latitude;
     private Double longitude;
-    private int semanaID;
-    private LatLng posicao;
-    private MarkerOptions markerOptions;
+
+    private int semanaID; // numero correspondente ao dia da semana
+    private int tipoID; // numero correspondente ao tiopo ver setTipo()
+    private int redeID;  // numero correspondente a cor da rede ver setRede()
+
+    private LatLng posicao; // auto gerado
+    private MarkerOptions markerOptions; // auto gerado
+    private String tipo; // auto gerado
+    private String rede; // auto gerado
+
 
     public CelulaBean(Parcel in) {
         readFromParcelable(in);
@@ -34,7 +41,7 @@ public class CelulaBean implements Parcelable {
         // TODO
     }
 
-    public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude, int semanaID) {
+    public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude, int semanaID, int tipoID, int redeID) {
         this.nome = nome;
         this.endereco = endereco;
         this.liderNome = liderNome;
@@ -43,6 +50,8 @@ public class CelulaBean implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.semanaID = semanaID;
+        this.tipoID = tipoID;
+        this.redeID = redeID;
     }
 
     //    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
@@ -78,6 +87,8 @@ public class CelulaBean implements Parcelable {
         diaHora = in.readString();
         latitude = in.readDouble();
         longitude = in.readDouble();
+        tipoID = in.readInt();
+        redeID = in.readInt();
     }
 
     /**
@@ -97,6 +108,8 @@ public class CelulaBean implements Parcelable {
         dest.writeString(diaHora);
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
+        dest.writeInt(tipoID);
+        dest.writeInt(redeID);
     }
 
 
@@ -210,4 +223,75 @@ public class CelulaBean implements Parcelable {
     public void setSemanaID(int semanaID) {
         this.semanaID = semanaID;
     }
+
+    public int getTipoID() {
+        return tipoID;
+    }
+
+    public void setTipoID(int tipoID) {
+        this.tipoID = tipoID;
+    }
+
+    public int getRedeID() {
+        return redeID;
+    }
+
+    public void setRedeID(int redeID) {
+        this.redeID = redeID;
+    }
+
+    public String getTipo() {
+        setTipo();
+        return tipo;
+    }
+
+    public void setTipo() {
+        switch (this.tipoID) {
+            case 1:
+                this.tipo = "Crianças";
+                break;
+            case 2:
+                this.tipo = "Adolecantes";
+                break;
+            case 3:
+                this.tipo = "Jovens";
+                break;
+            case 4:
+                this.tipo = "Adultos";
+                break;
+            default:
+                this.tipo = "Tipo não definido";
+                break;
+        }
+    }
+
+
+    public String getRede() {
+        setRede();
+        return rede;
+    }
+
+    public void setRede() {
+        switch (this.getRedeID()) {
+            case 1:
+                this.rede = "Rede Larranja";
+                break;
+            case 2:
+                this.rede = "Rede Vinho Novo";
+                break;
+            case 3:
+                this.rede = "Rede Vermenlha";
+                break;
+            case 4:
+                this.rede = "Rede Verde";
+                break;
+            case 5:
+                this.rede = "Rede Amarelha";
+                break;
+            default:
+                this.rede = "Definir nome da Rede";
+                break;
+        }
+    }
+
 }

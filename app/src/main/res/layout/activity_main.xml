@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.com.igrejadapaz.fortaleza.mapasdascelulas.MainActivity">
+    tools:context="br.com.igrejadapaz.fortaleza.mapasdascelulas.MainActivity"
+    android:background="#39afe3">
 
     <Button
         android:layout_width="fill_parent"
@@ -19,8 +20,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="86dp"
         style="@style/Animation.AppCompat.Dialog"
-        android:background="#4e54f8"
-        android:textColor="#ffffff"
+        android:background="#f9b22b"
+        android:textColor="#334e9f"
         android:textColorHighlight="#fdaa05"
         android:textColorHint="#f90202"
         android:textColorLink="#fc0606"
@@ -30,6 +31,6 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:id="@+id/imageView"
-        android:src="@mipmap/ig_paz_logo_nome"
+        android:src="@mipmap/ic_ig_paz"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

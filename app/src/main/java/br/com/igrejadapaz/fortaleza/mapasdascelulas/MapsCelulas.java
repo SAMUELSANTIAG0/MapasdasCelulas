@@ -43,9 +43,11 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
 
     private void popularCelulaTeste() {
-        CelulaBean celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7);
+        CelulaBean celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7, 3, 1);
+        celulaTeste.setId(1);
         CelulaDao dao = new CelulaDao(MapsCelulas.this);
         dao.inserirRegistro(celulaTeste);
+        dao.close();
     }
 
     /**
@@ -76,21 +78,13 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
         CelulaDao celulaDao = new CelulaDao(MapsCelulas.this);
         celulaDao.getMarkers(mMap);
-//        LatLng celula = new LatLng(celulaTeste.getLatitude(),celulaTeste.getLongitude());
-//        mMap.addMarker(new MarkerOptions().position(celula).title(celulaTeste.getNome()).snippet(celulaTeste.getDiaHora()+" Líder "+celulaTeste.getLiderNome()+" contato: "+celulaTeste.getTelefoneInformacao()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).anchor(0.0f, 0.0f));
+        celulaDao.close();
 
-//        mMap.addPolyline(new PolylineOptions().add(unifor).add(celula).color(R.color.aqua).geodesic(true));
-
-//        Geocoder geocoder = new Geocoder(MapsCelulas.this, Locale.getDefault());
-//        Location loc;
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(fortaleza, 2));
 
-//        CameraPosition cp = CameraPosition.builder().target(fortaleza).zoom(2).bearing(90).build();
-//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp),2000,null);
-
-        CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(12).bearing(360).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+        CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
 
     }
 
