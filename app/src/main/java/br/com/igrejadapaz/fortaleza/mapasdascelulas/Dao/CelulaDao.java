@@ -79,7 +79,8 @@ public class CelulaDao extends SQLiteOpenHelper {
                 + "telefoneInformacao TEXT, "
                 + "diaHora TEXT, "
                 + "latitude DOUBLE, "
-                + "longitude DOUBLE) ";
+                + "longitude DOUBLE,"
+                + "semanaID INTEGER) ";
         db.execSQL(sql);
 
     }
@@ -121,6 +122,7 @@ public class CelulaDao extends SQLiteOpenHelper {
         valores.put("diaHora", celula.getDiaHora());
         valores.put("latitude", celula.getLatitude());
         valores.put("longitude", celula.getLongitude());
+        valores.put("semanaID", celula.getSemanaID());
 
         getWritableDatabase().insert(TABELA, null, valores);
     }
@@ -140,13 +142,14 @@ public class CelulaDao extends SQLiteOpenHelper {
         valores.put("diaHora", celula.getDiaHora());
         valores.put("latitude", celula.getLatitude());
         valores.put("longitude", celula.getLongitude());
+        valores.put("semanaID", celula.getSemanaID());
 
         String[] args = new String[]{Integer.toString(celula.getId())};
 
         getWritableDatabase().update(TABELA, valores, "id=?", args);
     }
 
-    public ArrayList<CelulaBean> consultarRegistros() {
+    public ArrayList<CelulaBean> consultarCelulas() {
 
         ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
         String sql = "Select * from celula order by nome";
@@ -164,6 +167,9 @@ public class CelulaDao extends SQLiteOpenHelper {
                 celula.setDiaHora(cursor.getString(5));
                 celula.setLatitude(cursor.getDouble(6));
                 celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                celulaList.add(celula);
             }
         } catch (android.database.SQLException sqle) {
         } finally {
@@ -172,5 +178,115 @@ public class CelulaDao extends SQLiteOpenHelper {
         return celulaList;
     }
 
+    public CelulaBean getCelula(int id) {
+        String sql = "Select * from celula where id =" + id;
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+        CelulaBean celula = new CelulaBean();
 
+        try {
+            while (cursor.moveToNext()) {
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+
+        return celula;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulas(int semanaID) {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID =" + semanaID + " order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulasSemana() {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID !=7 order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
+
+    public ArrayList<CelulaBean> consultarCelulasSabado() {
+
+        ArrayList<CelulaBean> celulaList = new ArrayList<CelulaBean>();
+        String sql = "Select * from celula where semanaID =7 order by nome";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        try {
+            while (cursor.moveToNext()) {
+                CelulaBean celula = new CelulaBean();
+
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+
+                celulaList.add(celula);
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+        return celulaList;
+    }
 }

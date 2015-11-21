@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -42,7 +43,7 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
 
     private void popularCelulaTeste() {
-        celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218);
+        celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7);
     }
 
     /**
@@ -67,6 +68,9 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
         LatLng unifor = new LatLng(-3.76908106, -38.48176003);
         mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
+
+        LatLng igreja = new LatLng(-3.8129413, -38.449650);
+        mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz)));
 
         mMap.addMarker(celulaTeste.getMarkerOptions());
 

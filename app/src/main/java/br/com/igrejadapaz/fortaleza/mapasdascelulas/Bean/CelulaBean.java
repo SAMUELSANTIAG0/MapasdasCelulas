@@ -22,6 +22,7 @@ public class CelulaBean implements Parcelable {
     private String diaHora;
     private Double latitude;
     private Double longitude;
+    private int semanaID;
     private LatLng posicao;
     private MarkerOptions markerOptions;
 
@@ -33,7 +34,7 @@ public class CelulaBean implements Parcelable {
         // TODO
     }
 
-    public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude) {
+    public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude, int semanaID) {
         this.nome = nome;
         this.endereco = endereco;
         this.liderNome = liderNome;
@@ -41,7 +42,7 @@ public class CelulaBean implements Parcelable {
         this.diaHora = diaHora;
         this.latitude = latitude;
         this.longitude = longitude;
-        setPosicao();
+        this.semanaID = semanaID;
     }
 
     //    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
@@ -202,4 +203,11 @@ public class CelulaBean implements Parcelable {
         this.longitude = longitude;
     }
 
+    public int getSemanaID() {
+        return semanaID;
+    }
+
+    public void setSemanaID(int semanaID) {
+        this.semanaID = semanaID;
+    }
 }
