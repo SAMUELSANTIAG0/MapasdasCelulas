@@ -68,6 +68,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name="br.com.igrejadapaz.fortaleza.mapasdascelulas.ListaCelulas" />
+        <activity
+            android:name="br.com.igrejadapaz.fortaleza.mapasdascelulas.DetalhesCelula"
+            android:label="@string/title_activity_detalhes_celula"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
