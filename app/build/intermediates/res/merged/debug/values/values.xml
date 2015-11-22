@@ -67,6 +67,7 @@
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="fuchsia">#FF00FF</color>
+    <color name="fundoAzul">#39afe3</color>
     <color name="gray">#808080</color>
     <color name="green">#008000</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
@@ -277,7 +278,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="accept">Accept</string>
-    <string name="app_name">Células Ig. da Paz Fortaleza</string>
+    <string name="app_name">Células Igreja da Paz Fortaleza</string>
     <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
     <string name="auth_google_play_services_client_google_display_name">Google</string>
     <string name="cast_notification_connected_message">Connected to <ns1:g id="name">%1$s</ns1:g></string>

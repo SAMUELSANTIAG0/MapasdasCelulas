@@ -116,6 +116,15 @@ public class CelulaDao extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+    public void reset() {
+        String sql = "DROP TABLE IF EXISTS " + TABELA;
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
+        onCreate(db);
+        db.close();
+    }
+
     public void inserirRegistro(CelulaBean celula) {
         ContentValues valores = new ContentValues();
 

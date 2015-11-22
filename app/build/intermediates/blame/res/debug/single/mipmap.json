@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\ig_nome.png",
+        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\ig_nome.png"
+    },
+    {
         "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\mipmap\\ig_paz_logo_nome.png",
         "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\mipmap\\ig_paz_logo_nome.png"
     },

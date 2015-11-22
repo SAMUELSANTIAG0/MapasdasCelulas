@@ -2,6 +2,7 @@ package br.com.igrejadapaz.fortaleza.mapasdascelulas;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,14 +39,14 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        popularCelulaTeste();
+//        popularCelulaTeste();
     }
 
 
     private void popularCelulaTeste() {
         CelulaBean celulaTeste = new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7, 3, 1);
-        celulaTeste.setId(1);
         CelulaDao dao = new CelulaDao(MapsCelulas.this);
+        dao.reset();
         dao.inserirRegistro(celulaTeste);
         dao.close();
     }
@@ -69,23 +70,27 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
         LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
 //        mMap.addMarker(new MarkerOptions().position(fortaleza).title("Fortaleza"));
-
-        LatLng unifor = new LatLng(-3.76908106, -38.48176003);
-        mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
+//        LatLng unifor = new LatLng(-3.76908106, -38.48176003);
+//        mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
 
         LatLng igreja = new LatLng(-3.8129413, -38.449650);
         mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz_55x55)));
 
-        CelulaDao celulaDao = new CelulaDao(MapsCelulas.this);
-        celulaDao.getMarkers(mMap);
-        celulaDao.close();
 
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(fortaleza, 2));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(igreja, 30));
 
         CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+
+        marcarCelulas();
 
     }
 
+    public void marcarCelulas() {
+        CelulaDao celulaDao = new CelulaDao(MapsCelulas.this);
+        celulaDao.getMarkers(mMap);
+        Toast.makeText(MapsCelulas.this, "Quantidade de células cadastradas: " + celulaDao.consultarCelulas().size(),
+                Toast.LENGTH_SHORT).show();
+        celulaDao.close();
+    }
 }

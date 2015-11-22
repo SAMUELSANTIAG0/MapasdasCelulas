@@ -13,24 +13,125 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Go to Maps"
+        android:text="Ver Células"
         android:id="@+id/button"
         android:onClick="goMaps"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="86dp"
         style="@style/Animation.AppCompat.Dialog"
         android:background="#f9b22b"
         android:textColor="#334e9f"
         android:textColorHighlight="#fdaa05"
         android:textColorHint="#f90202"
         android:textColorLink="#fc0606"
-        android:textSize="@dimen/abc_dropdownitem_icon_width" />
+        android:textSize="@dimen/abc_dropdownitem_icon_width"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:id="@+id/imageView"
         android:src="@mipmap/ic_ig_paz"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/filtroDia"
+        android:layout_marginStart="34dp"
+        android:layout_above="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginBottom="104dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Filtrar por dia"
+            android:id="@+id/textView" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todos"
+            android:checked="true"
+            android:id="@+id/Button_diaTodos" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semana"
+            android:id="@+id/Button_diaSemana"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sábado"
+            android:id="@+id/Button_diaSabado"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/filtroTipo"
+        android:layout_alignTop="@+id/filtroDia"
+        android:layout_alignEnd="@+id/button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Filtrar por tipo"
+            android:id="@+id/textView2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todos"
+            android:id="@+id/Button_tipoTodos"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crianças"
+            android:id="@+id/Button_tipoCriancas"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adolescentes"
+            android:id="@+id/Button_tipoAdolescentes"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jovens"
+            android:id="@+id/Button_tipoJovens"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adultos"
+            android:id="@+id/Button_tipoAdultos"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:id="@+id/imageView2"
+        android:src="@mipmap/ig_nome"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

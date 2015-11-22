@@ -42,7 +42,7 @@ public class CelulaBean implements Parcelable {
     }
 
     public CelulaBean(String nome, String endereco, String liderNome, String telefoneInformacao, String diaHora, Double latitude, Double longitude, int semanaID, int tipoID, int redeID) {
-        this.nome = nome;
+        setNome(nome);
         this.endereco = endereco;
         this.liderNome = liderNome;
         this.telefoneInformacao = telefoneInformacao;
@@ -173,7 +173,7 @@ public class CelulaBean implements Parcelable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = "Célula " + nome;
     }
 
     public String getLiderNome() {
