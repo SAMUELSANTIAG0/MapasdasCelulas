@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 //        android.support.v7.app.ActionBar bar = getSupportActionBar();
 //        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#39afe3")));
 //        bar.hide();
-//
+
 
         celulasCadastros();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -52,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
          *  int semanaID, int tipoID, int redeID)
          */
 
-        dao.inserirRegistro(new CelulaBean("MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7, 3, 1));
-        dao.inserirRegistro(new CelulaBean("Geração Eleita", "Av Desembargador Praxedes, nº1441 - Montese", "Renata Granjeiro", "98821-7272", "Quintas as 20h", -3.7633416, -38.54193, 5, 3, 1));
-        dao.inserirRegistro(new CelulaBean("Eleitos por Cristo", "Rua Prof Isaías Gomes, nº157 - Edson Queiroz", "Cezar Peixoto", "99922-3309", "Quartas as 20h", -3.7588539, -38.4808816, 4, 4, 2));
-        dao.inserirRegistro(new CelulaBean("Crianças pra Cristo", "Av Desembargador Praxedes, nº1441 - Montese", "Rosemary", "98821-7272", "Quartas as 20h", -3.7633416, -38.54193, 5, 1, 1));
-        dao.inserirRegistro(new CelulaBean("Adolesantos", "Rua 23, Jose Walter", "Camylla Oliveira", "98198-9323", "Sábados as 16h", -3.8249069, -38.5511938, 7, 2, 2));
+        dao.inserirRegistro(new CelulaBean("Célula MDA", "Av A, nº20 - José Walter", "Samuel", "99150-5007", "Sábados as 16h", -3.82568256, -38.55116218, 7, 3, 1));
+        dao.inserirRegistro(new CelulaBean("Célula Geração Eleita", "Av Desembargador Praxedes, nº1441 - Montese", "Renata Granjeiro", "98821-7272", "Quintas as 20h", -3.7633416, -38.54193, 5, 3, 1));
+        dao.inserirRegistro(new CelulaBean("Célula Eleitos por Cristo", "Rua Prof Isaías Gomes, nº157 - Edson Queiroz", "Cezar Peixoto", "99922-3309", "Quartas as 20h", -3.7588539, -38.4808816, 4, 4, 2));
+        dao.inserirRegistro(new CelulaBean("Célula Crianças pra Cristo", "Av Desembargador Praxedes, nº1441 - Montese", "Rosemary", "98821-7272", "Quartas as 20h", -3.7633416, -38.54193, 5, 1, 1));
+        dao.inserirRegistro(new CelulaBean("Célula Adolesantos", "Rua 23, Jose Walter", "Camylla Oliveira", "98198-9323", "Sábados as 16h", -3.8249069, -38.5511938, 7, 2, 2));
+        dao.inserirRegistro(new CelulaBean("Célula Sementes da Fé", "Rua Dr. Francisco Gadelha, 765 - Luciano Cavalcante", "Rodrigo", "99760-3510", "Sábados as 17h", -3.7751283, -38.4903772, 7, 3, 3));
+        dao.inserirRegistro(new CelulaBean("Célula Família Real", "Rua Prof. Jacinto Botelho, 1080, Apt. 1205 - Guararapes", "Barreto Neto", "99929-8681", "Quintas as 19h", -3.7630173, -38.4917747, 5, 4, 1));
 
         dao.close();
     }
@@ -112,6 +114,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goLista(View view) {
+
+        RadioGroup radioGroupDia = (RadioGroup) findViewById(R.id.filtroDia);
+        radioGroupDia.clearCheck();
+        RadioGroup radioGroupTipo = (RadioGroup) findViewById(R.id.filtroTipo);
+        radioGroupTipo.clearCheck();
+
+        Intent intent = new Intent(MainActivity.this, ListaCelulas.class);
+        Bundle parametros = new Bundle();
+        parametros.putString("filtroDia", txtFiltroDia);
+        parametros.putString("filtroTipo", txtFiltroTipo);
+        intent.putExtras(parametros);
+        startActivity(intent);
+    }
 
     @Override
     public void onStart() {

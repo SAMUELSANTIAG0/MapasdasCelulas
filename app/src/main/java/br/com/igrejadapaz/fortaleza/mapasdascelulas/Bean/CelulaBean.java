@@ -125,7 +125,7 @@ public class CelulaBean implements Parcelable {
     };
 
     public String toString(){
-        return "Célula "+nome;
+        return nome;
     }
 
     public static Parcelable.Creator getCREATOR() {
@@ -173,7 +173,7 @@ public class CelulaBean implements Parcelable {
     }
 
     public void setNome(String nome) {
-        this.nome = "Célula " + nome;
+        this.nome = nome;
     }
 
     public String getLiderNome() {

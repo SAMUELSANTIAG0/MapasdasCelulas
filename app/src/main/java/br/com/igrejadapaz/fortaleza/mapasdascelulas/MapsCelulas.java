@@ -65,9 +65,6 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         mMap.setContentDescription("Celulas em Fortaleza");
 
         LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
-//        mMap.addMarker(new MarkerOptions().position(fortaleza).title("Fortaleza"));
-//        LatLng unifor = new LatLng(-3.76908106, -38.48176003);
-//        mMap.addMarker(new MarkerOptions().position(unifor).title("Unifor").snippet("Universidade de Fortaleza"));
 
         LatLng igreja = new LatLng(-3.8129413, -38.449650);
         mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz_55x55)));
