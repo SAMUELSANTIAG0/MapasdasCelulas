@@ -14,8 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Ver Células"
-        android:id="@+id/button"
-        android:onClick="goMaps"
+        android:id="@+id/button_goMaps"
         style="@style/Animation.AppCompat.Dialog"
         android:background="#f9b22b"
         android:textColor="#334e9f"
@@ -24,7 +23,8 @@
         android:textColorLink="#fc0606"
         android:textSize="@dimen/abc_dropdownitem_icon_width"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="goMaps" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -40,8 +40,8 @@
         android:orientation="vertical"
         android:id="@+id/filtroDia"
         android:layout_marginStart="34dp"
-        android:layout_above="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_above="@+id/button_goMaps"
+        android:layout_alignStart="@+id/button_goMaps"
         android:layout_marginBottom="104dp">
 
         <TextView
@@ -55,22 +55,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Todos"
-            android:checked="true"
-            android:id="@+id/Button_diaTodos" />
+            android:checked="false"
+            android:id="@+id/Button_diaTodos"
+            android:onClick="buttonDiaTodos" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Semana"
             android:id="@+id/Button_diaSemana"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonDiaSemana" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sábado"
             android:id="@+id/Button_diaSabado"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonDiaSabado" />
 
     </RadioGroup>
 
@@ -80,7 +83,7 @@
         android:orientation="vertical"
         android:id="@+id/filtroTipo"
         android:layout_alignTop="@+id/filtroDia"
-        android:layout_alignEnd="@+id/button">
+        android:layout_alignEnd="@+id/button_goMaps">
 
         <TextView
             android:layout_width="wrap_content"
@@ -94,35 +97,40 @@
             android:layout_height="wrap_content"
             android:text="Todos"
             android:id="@+id/Button_tipoTodos"
-            android:checked="true" />
+            android:checked="false"
+            android:onClick="buttonTipoTodos" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Crianças"
             android:id="@+id/Button_tipoCriancas"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonTipoCriancas" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adolescentes"
             android:id="@+id/Button_tipoAdolescentes"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonTipoAdolecentes" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jovens"
             android:id="@+id/Button_tipoJovens"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonTipoJovens" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adultos"
             android:id="@+id/Button_tipoAdultos"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="buttonTipoAdultos" />
 
     </RadioGroup>
 

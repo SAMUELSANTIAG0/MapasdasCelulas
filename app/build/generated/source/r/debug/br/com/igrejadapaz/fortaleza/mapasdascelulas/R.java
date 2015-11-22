@@ -2200,8 +2200,8 @@ containing a value of this type.
         public static final int auto=0x7f0d002a;
         public static final int beginning=0x7f0d001a;
         public static final int book_now=0x7f0d0037;
-        public static final int button=0x7f0d0077;
         public static final int buttonPanel=0x7f0d0052;
+        public static final int button_goMaps=0x7f0d0077;
         public static final int buttons=0x7f0d0093;
         public static final int buyButton=0x7f0d0034;
         public static final int buy_now=0x7f0d0038;

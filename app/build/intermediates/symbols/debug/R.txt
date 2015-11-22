@@ -668,8 +668,8 @@ int id art 0x7f0d008d
 int id auto 0x7f0d002a
 int id beginning 0x7f0d001a
 int id book_now 0x7f0d0037
-int id button 0x7f0d0077
 int id buttonPanel 0x7f0d0052
+int id button_goMaps 0x7f0d0077
 int id buttons 0x7f0d0093
 int id buyButton 0x7f0d0034
 int id buy_now 0x7f0d0038
