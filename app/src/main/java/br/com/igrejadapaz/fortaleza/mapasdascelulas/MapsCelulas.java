@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Dao.CelulaDao;
 
 public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback {
@@ -128,6 +129,14 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
                 break;
             case "24":
                 celulaDao.getMarkersSabadoTipoId(mMap, 4);
+                break;
+
+            case "99":
+                CelulaBean celulaSelecionada = getIntent().getExtras().getParcelable("celulaSelecionada");
+                mMap.addMarker(celulaSelecionada.getMarkerOptions());
+                mMap.stopAnimation();
+                CameraPosition cameraPosition = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(20).bearing(360).build();
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
                 break;
             default:
                 celulaDao.getMarkers(mMap);

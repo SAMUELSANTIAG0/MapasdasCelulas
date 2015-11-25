@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         dao.inserirRegistro(new CelulaBean("Célula Geração Eleita", "Av Desembargador Praxedes, nº1441 - Montese", "Renata Granjeiro", "98821-7272", "Quintas as 20h", -3.7633416, -38.54193, 5, 3, 1));
         dao.inserirRegistro(new CelulaBean("Célula Eleitos por Cristo", "Rua Prof Isaías Gomes, nº157 - Edson Queiroz", "Cezar Peixoto", "99922-3309", "Quartas as 20h", -3.7588539, -38.4808816, 4, 4, 2));
         dao.inserirRegistro(new CelulaBean("Célula Crianças pra Cristo", "Av Desembargador Praxedes, nº1441 - Montese", "Rosemary", "98821-7272", "Quartas as 20h", -3.7633416, -38.54193, 5, 1, 1));
-        dao.inserirRegistro(new CelulaBean("Célula Adolesantos", "Rua 23, Jose Walter", "Camylla Oliveira", "98198-9323", "Sábados as 16h", -3.8249069, -38.5511938, 7, 2, 2));
+        dao.inserirRegistro(new CelulaBean("Célula AdoleSantos", "Rua 23, Jose Walter", "Camylla Oliveira", "98198-9323", "Sábados as 16h", -3.8249069, -38.5511938, 7, 2, 2));
         dao.inserirRegistro(new CelulaBean("Célula Sementes da Fé", "Rua Dr. Francisco Gadelha, 765 - Luciano Cavalcante", "Rodrigo", "99760-3510", "Sábados as 17h", -3.7751283, -38.4903772, 7, 3, 3));
         dao.inserirRegistro(new CelulaBean("Célula Família Real", "Rua Prof. Jacinto Botelho, 1080, Apt. 1205 - Guararapes", "Barreto Neto", "99929-8681", "Quintas as 19h", -3.7630173, -38.4917747, 5, 4, 1));
 

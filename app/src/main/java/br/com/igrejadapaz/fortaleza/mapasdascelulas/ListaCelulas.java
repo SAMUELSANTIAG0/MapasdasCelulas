@@ -1,8 +1,13 @@
 package br.com.igrejadapaz.fortaleza.mapasdascelulas;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,7 +20,7 @@ import br.com.igrejadapaz.fortaleza.mapasdascelulas.Dao.CelulaDao;
 public class ListaCelulas extends AppCompatActivity {
 
     private ListView listViewCelula;
-    private CelulaBean celulaSelecionado;
+    private CelulaBean celulaSelecionada;
     private List<CelulaBean> registrosCelula;
     private ArrayAdapter<CelulaBean> adaptadorLista;
     private int adptadorLayout = android.R.layout.simple_list_item_1;
@@ -31,6 +36,7 @@ public class ListaCelulas extends AppCompatActivity {
         filtro = args.getString("filtroDia") + args.getString("filtroTipo");
 
         listViewCelula = (ListView) findViewById(R.id.listView);
+        registerForContextMenu(listViewCelula);
         CelulaDao dao = new CelulaDao(ListaCelulas.this);
 
         registrosCelula = carregarCelulas(dao);
@@ -38,7 +44,46 @@ public class ListaCelulas extends AppCompatActivity {
         adaptadorLista = new ArrayAdapter<CelulaBean>(this, adptadorLayout, registrosCelula);
         listViewCelula.setAdapter(adaptadorLista);
 
+        listViewCelula.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                celulaSelecionada = (CelulaBean) adaptadorLista.getItem(position);
+                Intent intent = new Intent(ListaCelulas.this, DetalhesCelula.class);
+                intent.putExtra("celulaSelecionada", (Parcelable) celulaSelecionada);
+                startActivity(intent);
+            }
+        });
+        listViewCelula.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                celulaSelecionada = (CelulaBean) adaptadorLista.getItem(position);
+                return false;
+            }
+        });
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_contexto, menu);
+
+        ListView lv = (ListView) v;
+        AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        final CelulaBean celulaBean = (CelulaBean) lv.getItemAtPosition(acmi.position);
+        String nome = celulaBean.getNome();
+        menu.setHeaderTitle(nome);
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        Intent intent = null;
+        if (item.getItemId() == R.id.itemInfor) {
+            intent = new Intent(ListaCelulas.this, DetalhesCelula.class);
+            intent.putExtra("celulaSelecionada", (Parcelable) celulaSelecionada);
+            startActivity(intent);
+        }
+        return super.onContextItemSelected(item);
+    }
+
 
     private List<CelulaBean> carregarCelulas(CelulaDao dao) {
 

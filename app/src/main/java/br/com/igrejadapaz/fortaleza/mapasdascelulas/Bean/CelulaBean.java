@@ -125,7 +125,7 @@ public class CelulaBean implements Parcelable {
     };
 
     public String toString(){
-        return nome;
+        return nome + " - " + diaHora;
     }
 
     public static Parcelable.Creator getCREATOR() {

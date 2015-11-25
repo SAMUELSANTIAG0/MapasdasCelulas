@@ -84,4 +84,24 @@
         android:src="@mipmap/mda_icon"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textViewRede" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="ligar"
+        android:id="@+id/buttonLigar"
+        android:background="@drawable/buttonshape2"
+        android:onClick="ligar"
+        android:layout_alignTop="@+id/textViewTelefone"
+        android:layout_toEndOf="@+id/textViewNome" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/imageView5"
+        android:src="@mipmap/ic_whats"
+        android:layout_below="@+id/textViewTipo"
+        android:layout_alignParentEnd="true"
+        android:onClick="whatsapp" />
+
 </RelativeLayout>
