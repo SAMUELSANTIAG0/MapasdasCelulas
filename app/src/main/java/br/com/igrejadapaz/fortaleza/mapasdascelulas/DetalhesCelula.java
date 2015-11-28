@@ -77,12 +77,12 @@ public class DetalhesCelula extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void whatsapp(View view) {
+    public void toShared(View view) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, " " + celulaSelecionada.getNome() + " " + celulaSelecionada.getEndereco());
-        sendIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, celulaSelecionada.getTelefoneInformacao());
-        sendIntent.setData(Uri.parse("sms: " + celulaSelecionada.getTelefoneInformacao()));
+        sendIntent.putExtra(Intent.EXTRA_TEXT, celulaSelecionada.toShared());
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, " " + celulaSelecionada.getNome() + " " + celulaSelecionada.getEndereco() + " " + celulaSelecionada.getPosicao());
+//        sendIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, celulaSelecionada.getTelefoneInformacao());
         sendIntent.setType("text/plain");
         sendIntent.setPackage("com.whatsapp");
         startActivity(sendIntent);

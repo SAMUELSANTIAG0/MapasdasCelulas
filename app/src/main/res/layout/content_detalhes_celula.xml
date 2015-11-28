@@ -66,7 +66,8 @@
         android:text="Telefone"
         android:id="@+id/textViewTelefone"
         android:layout_below="@+id/textViewNomeLider"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="ligar" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,30 +79,33 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:id="@+id/imageView3"
         android:src="@mipmap/mda_icon"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textViewRede" />
+        android:layout_toEndOf="@+id/textViewRede"
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:text="ligar"
-        android:id="@+id/buttonLigar"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="Convidar para a célula"
+        android:onClick="toShared"
+        android:nestedScrollingEnabled="false"
         android:background="@drawable/buttonshape2"
-        android:onClick="ligar"
-        android:layout_alignTop="@+id/textViewTelefone"
-        android:layout_toEndOf="@+id/textViewNome" />
+        android:id="@+id/buttonConvidar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView5"
-        android:src="@mipmap/ic_whats"
-        android:layout_below="@+id/textViewTipo"
-        android:layout_alignParentEnd="true"
-        android:onClick="whatsapp" />
+        android:src="@android:drawable/ic_menu_call"
+        android:layout_alignTop="@+id/textViewTelefone"
+        android:layout_alignEnd="@+id/buttonConvidar"
+        android:onClick="ligar" />
 
 </RelativeLayout>

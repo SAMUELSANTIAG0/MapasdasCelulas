@@ -112,7 +112,6 @@ public class CelulaBean implements Parcelable {
         dest.writeInt(redeID);
     }
 
-
     @SuppressWarnings("rawtypes")
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public CelulaBean createFromParcel(Parcel in) {
@@ -123,6 +122,12 @@ public class CelulaBean implements Parcelable {
             return new CelulaBean[size];
         }
     };
+
+    public String toShared() {
+        return "Que tal fazer novas amizades, dar boas risadas e se divertir\nenquanto conhece um pouco mais de Deus?\nGostaria muito de ter você na nossa célula!\nVamos?" +
+                "\nA " + getNome() + " que acontece todo " + getDiaHora() + " na " + getEndereco() +
+                "\n \nhttps://www.google.com/maps/place//@" + getLatitude() + "," + getLongitude() + ",18z/";
+    }
 
     public String toString(){
         return nome + " - " + diaHora;
