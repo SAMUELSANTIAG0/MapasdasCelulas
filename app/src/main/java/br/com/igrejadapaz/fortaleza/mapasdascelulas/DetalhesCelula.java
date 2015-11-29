@@ -13,11 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 
-public class DetalhesCelula extends AppCompatActivity {
+public class DetalhesCelula extends AppCompatActivity implements OnMapReadyCallback {
 
     private CelulaBean celulaSelecionada;
+    private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +59,15 @@ public class DetalhesCelula extends AppCompatActivity {
         lider.setText(celulaSelecionada.getLiderNome());
         TextView telefone = (TextView) findViewById(R.id.textViewTelefone);
         telefone.setText(celulaSelecionada.getTelefoneInformacao());
-        TextView rede = (TextView) findViewById(R.id.textViewRede);
-        rede.setText(celulaSelecionada.getRede());
         TextView dia = (TextView) findViewById(R.id.textViewDiaHora);
         dia.setText(celulaSelecionada.getDiaHora());
         TextView tipo = (TextView) findViewById(R.id.textViewTipo);
-        tipo.setText(celulaSelecionada.getTipo());
+        tipo.setText("Célula de " + celulaSelecionada.getTipo() + " - " + celulaSelecionada.getRede());
 
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map2);
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -81,10 +91,26 @@ public class DetalhesCelula extends AppCompatActivity {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, celulaSelecionada.toShared());
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, " " + celulaSelecionada.getNome() + " " + celulaSelecionada.getEndereco() + " " + celulaSelecionada.getPosicao());
-//        sendIntent.putExtra(Intent.EXTRA_PHONE_NUMBER, celulaSelecionada.getTelefoneInformacao());
         sendIntent.setType("text/plain");
         sendIntent.setPackage("com.whatsapp");
         startActivity(sendIntent);
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.setContentDescription("Celulas em Fortaleza");
+
+        mMap.addMarker(celulaSelecionada.getMarkerOptions());
+        mMap.stopAnimation();
+        CameraPosition cameraPosition = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(17).bearing(360).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
+
+    }
+
+
 }

@@ -52,12 +52,12 @@
         "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_detalhes_celula.xml",
-        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\layout\\activity_detalhes_celula.xml"
-    },
-    {
         "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_detalhes_celula.xml",
         "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\layout\\content_detalhes_celula.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_detalhes_celula.xml",
+        "source": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\src\\main\\res\\layout\\activity_detalhes_celula.xml"
     },
     {
         "merged": "C:\\Users\\Samuel Santiago\\workspace\\MapasdasCelulas\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",

@@ -1,6 +1,8 @@
 package br.com.igrejadapaz.fortaleza.mapasdascelulas;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +19,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Dao.CelulaDao;
@@ -76,6 +81,9 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
 
         CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+
+        //Add marher pelo endereço
+        mMap.addMarker(new MarkerOptions().position(getLatLngFromAddress("Av. Washington Soares, 1321")).title("Unifor"));
 
         marcarCelulas();
 
@@ -150,6 +158,25 @@ public class MapsCelulas extends FragmentActivity implements OnMapReadyCallback 
         celulaDao.close();
     }
 
+
+    public LatLng getLatLngFromAddress(String endereco) {
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> listaEnderecos = null;
+        Double latitude = null;
+        Double longitude = null;
+        try {
+            listaEnderecos = geocoder.getFromLocationName(endereco, 3);
+            if (listaEnderecos == null) {
+                return null;
+            }
+            Address address = listaEnderecos.get(0);
+            latitude = address.getLatitude();
+            longitude = address.getLongitude();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new LatLng(latitude, longitude);
+    }
 
     @Override
     public void onStart() {
