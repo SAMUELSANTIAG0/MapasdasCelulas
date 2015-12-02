@@ -2808,7 +2808,7 @@ containing a value of this type.
         public static final int beginning=0x7f0d0032;
         public static final int book_now=0x7f0d0050;
         public static final int bottom=0x7f0d001d;
-        public static final int buttonConvidar=0x7f0d00ab;
+        public static final int buttonConvidar=0x7f0d00ac;
         public static final int buttonPanel=0x7f0d006b;
         public static final int buttons=0x7f0d00c1;
         public static final int buyButton=0x7f0d004d;
@@ -2872,7 +2872,7 @@ containing a value of this type.
         public static final int imageView=0x7f0d0095;
         public static final int imageView2=0x7f0d00a2;
         public static final int imageView4=0x7f0d0093;
-        public static final int imageViewCall=0x7f0d00ac;
+        public static final int imageViewCall=0x7f0d00ab;
         public static final int info=0x7f0d00cf;
         public static final int itemInfor=0x7f0d00d1;
         public static final int item_touch_helper_previous_elevation=0x7f0d0006;

@@ -784,7 +784,7 @@ int id auto 0x7f0d0041
 int id beginning 0x7f0d0032
 int id book_now 0x7f0d0050
 int id bottom 0x7f0d001d
-int id buttonConvidar 0x7f0d00ab
+int id buttonConvidar 0x7f0d00ac
 int id buttonPanel 0x7f0d006b
 int id buttons 0x7f0d00c1
 int id buyButton 0x7f0d004d
@@ -848,7 +848,7 @@ int id image 0x7f0d0066
 int id imageView 0x7f0d0095
 int id imageView2 0x7f0d00a2
 int id imageView4 0x7f0d0093
-int id imageViewCall 0x7f0d00ac
+int id imageViewCall 0x7f0d00ab
 int id info 0x7f0d00cf
 int id itemInfor 0x7f0d00d1
 int id item_touch_helper_previous_elevation 0x7f0d0006

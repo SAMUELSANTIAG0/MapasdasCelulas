@@ -70,18 +70,17 @@
         android:text="Telefone"
         android:id="@+id/textViewTelefone"
         android:onClick="ligar"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textViewNomeLider"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignBottom="@+id/imageViewCall"
+        android:layout_toEndOf="@+id/imageViewCall" />
 
     <!--<ImageView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:id="@+id/imageView3"-->
-        <!--android:src="@mipmap/mda_icon"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_toEndOf="@+id/textViewRede"-->
-        <!--android:layout_alignParentStart="true" />-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:id="@+id/imageView3"-->
+    <!--android:src="@mipmap/mda_icon"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_toEndOf="@+id/textViewRede"-->
+    <!--android:layout_alignParentStart="true" />-->
 
     <Button
         android:layout_width="170dp"
@@ -93,7 +92,10 @@
         android:id="@+id/buttonConvidar"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="60dp" />
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="02dp"
+        android:layout_marginBottom="13dp"
+        android:layout_alignParentLeft="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -102,7 +104,7 @@
         android:src="@android:drawable/ic_menu_call"
         android:onClick="ligar"
         android:layout_below="@+id/textViewNomeLider"
-        android:layout_toEndOf="@+id/textViewEndereco" />
+        android:layout_alignParentStart="true" />
 
     <fragment
         android:id="@+id/map2"

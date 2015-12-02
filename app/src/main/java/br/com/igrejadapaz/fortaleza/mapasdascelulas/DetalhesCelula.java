@@ -3,6 +3,8 @@ package br.com.igrejadapaz.fortaleza.mapasdascelulas;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -18,6 +20,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.IOException;
+import java.util.List;
 
 import br.com.igrejadapaz.fortaleza.mapasdascelulas.Bean.CelulaBean;
 
@@ -104,13 +110,31 @@ public class DetalhesCelula extends AppCompatActivity implements OnMapReadyCallb
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.setContentDescription("Celulas em Fortaleza");
-
+        CameraPosition cameraPosition = CameraPosition.builder().target(getLatLngFromAddress("City of Fortaleza, Brazil")).build();
         mMap.addMarker(celulaSelecionada.getMarkerOptions());
         mMap.stopAnimation();
-        CameraPosition cameraPosition = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(17).bearing(360).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
+        CameraPosition cameraPositionCelula = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(17).bearing(360).build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPositionCelula), 5000, null);
 
     }
 
 
+    public LatLng getLatLngFromAddress(String endereco) {
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> listaEnderecos = null;
+        Double latitude = null;
+        Double longitude = null;
+        try {
+            listaEnderecos = geocoder.getFromLocationName(endereco, 3);
+            if (listaEnderecos == null) {
+                return null;
+            }
+            Address address = listaEnderecos.get(0);
+            latitude = address.getLatitude();
+            longitude = address.getLongitude();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new LatLng(latitude, longitude);
+    }
 }

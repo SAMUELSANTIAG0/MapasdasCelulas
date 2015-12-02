@@ -54,18 +54,6 @@ public class CelulaBean implements Parcelable {
         this.redeID = redeID;
     }
 
-    //    public static final Creator<CelulaBean> CREATOR = new Creator<CelulaBean>() {
-//        @Override
-//        public CelulaBean createFromParcel(Parcel in) {
-//            return new CelulaBean(in);
-//        }
-//
-//        @Override
-//        public CelulaBean[] newArray(int size) {
-//            return new CelulaBean[size];
-//        }
-//    };
-
     /**
      * Describe the kinds of special objects contained in this Parcelable's
      * marshalled representation.
