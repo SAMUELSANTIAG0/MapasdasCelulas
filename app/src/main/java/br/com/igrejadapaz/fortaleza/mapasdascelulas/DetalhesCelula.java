@@ -110,7 +110,7 @@ public class DetalhesCelula extends AppCompatActivity implements OnMapReadyCallb
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.setContentDescription("Celulas em Fortaleza");
-        CameraPosition cameraPosition = CameraPosition.builder().target(getLatLngFromAddress("City of Fortaleza, Brazil")).build();
+        CameraPosition cameraPosition = CameraPosition.builder().target(getLatLngFromAddress("City of Fortaleza, Brazil")).zoom(8).build();
         mMap.addMarker(celulaSelecionada.getMarkerOptions());
         mMap.stopAnimation();
         CameraPosition cameraPositionCelula = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(17).bearing(360).build();
